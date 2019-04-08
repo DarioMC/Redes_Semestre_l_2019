@@ -1,0 +1,111 @@
+listas de acceso estendidas
+
+	book
+	CCIE - PROFESSIONAL Development
+	Routing TCP/IP
+	Volume 1
+	jeff Doyle CCIE#1919
+ 	CISCO PRESS
+
+eq = equal
+neq = not equal
+lt = less than 
+qt = qrater than
+
+Estandart 1-99
+Extendent 100-199
+
+
+ip
+			 RED ORIGEN		DESTINO
+access-list 101 permit ip 172.22.30.6 0.0.0.0 10.0.0.0 0.255.255.255
+""	     "" permit ip 172.22.30.95 0.0.0.0 11.11.12.0 0.0.0.255
+""	""	permit ip 0.0.0.0 255.255.255.25 0.0.0.0 255.255.255.255
+ 			  ANY				ANY
+
+tcp
+
+access-list 100 permit tcp any 172.22.0.0 0.0.255.255
+access-list 100 permit tcp any host 172.22.15.88 eq 25 ---SMTP
+access-list 100 permit tcp 10.0.0.0 0.255.255.255 172.22.114.0 0.0.0.255 eq 23
+
+
+
+VDN
+
+access-list 110 permit tcp any 172.22.0.0  0.0.255.255
+access-list 110 permit tcp any host 172.22.15.83 eq 25
+access-list 110 deny   udp  10.64.32.0 0.0.0.255 host 172.22.15.87 eq 69 ----# tftp
+
+
+Icmp
+						      type  code     Echo
+access-list 111 deny icmp 172.22.0.0  0.0.255.255 any 0            Echo-reply 
+access-list 111 deny icmp 172.22.0.0  0.0.255.255 any 3      9     dest.unreachable
+
+
+
+accest-list 101 permit host 172.22.30.6 10.0.0.0 0.255.255.255 8 Echo-request
+
+interface fe0/0
+----
+----
+----
+ip access-group {#} inlat
+
+
+
+
+
+
+
+
+
+
+
+#########################################################################################################################################################
+
+Rate Maps  #desventaja enlace estable
+
+Linus
+
+interface serial 0
+ip address 172.16.5.1 255.255.255.0
+ip policy route-map sally 
+!
+access-list 1 permit 172.16.6.0 0.255.255.255
+access-list 2 permit 172.16.7.0 0.255.255.255
+!
+route-map sally permit 10
+match ip address 1
+setip next-hop 172.16.4.2
+!
+rate-map sally permit 15
+matc ip address 2
+setip net-hop 172.16.4.3
+
+
+
+
+
+
+Interesting-traffic
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
